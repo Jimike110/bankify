@@ -9,21 +9,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { Form } from "@/components/ui/form";
 import CustomInput from "./CustomInput";
 import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
+  const router = useRouter();
+
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -37,11 +31,28 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setIsLoading(true);
-    console.log(values);
-    setIsLoading(false);
-  }
+
+    try {
+      // Sign up with Appwrite & create Plaid token
+
+      if (type === "sign-up") {
+        // const newUser = await signUp(data);
+        // setUser(newUser);
+      } else if (type === "sign-in") {
+        // const response = await SignIn({
+        //   email: data.email,
+        //   password: data.password,
+        // });
+        // if (response) router.push("/");
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <section className="auth-form">
@@ -97,6 +108,13 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
                     name={"address1"}
                     label={"Address"}
                     placeholder={"Enter your specific address"}
+                  ></CustomInput>
+
+                  <CustomInput
+                    control={form.control}
+                    name={"city"}
+                    label={"City"}
+                    placeholder={"Enter your city"}
                   ></CustomInput>
 
                   <div className="flex gap-4">
