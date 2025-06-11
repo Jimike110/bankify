@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Bankify
 
-## Getting Started
+Bankify — это современная банковская платформа, позволяющая пользователям управлять своими счетами, просматривать транзакции и переводить средства между банками. Приложение построено на базе [Next.js](https://nextjs.org/) и использует современные технологии для обеспечения удобства и безопасности.
 
-First, run the development server:
+## Основные возможности
+
+- Просмотр баланса по всем подключённым банковским счетам
+- Визуализация баланса и транзакций с помощью графиков
+- История транзакций с фильтрацией по категориям
+- Переводы между счетами
+- Современный адаптивный интерфейс
+- Аутентификация пользователей
+
+## Технологии
+
+- **Next.js** — серверный рендеринг и маршрутизация
+- **React** — компонентный подход к построению интерфейса
+- **Tailwind CSS** — стилизация и кастомные темы
+- **React Hook Form** и **Zod** — валидация и обработка форм
+- **Chart.js** — визуализация данных
+- **Radix UI** — доступные UI-компоненты
+- **Appwrite** и **Plaid** (опционально) — интеграция с банковскими API
+
+## Структура проекта
+
+- `/app` — страницы и layout'ы приложения
+- `/components` — переиспользуемые React-компоненты
+- `/constants` — константы и настройки
+- `/lib` — утилиты и вспомогательные функции
+- `/public` — статические файлы и иконки
+- `/types` — глобальные типы TypeScript
+
+## Быстрый старт
+
+Установите зависимости:
+
+```bash
+npm install
+```
+
+Запустите локальный сервер разработки:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Откройте [http://localhost:3000](http://localhost:3000) в браузере.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Скрипты
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- `npm run dev` — запуск в режиме разработки
+- `npm run build` — сборка приложения
+- `npm run start` — запуск production-сборки
+- `npm run lint` — проверка кода линтером
 
-## Learn More
+## Лицензия
 
-To learn more about Next.js, take a look at the following resources:
+MIT
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Bankify — современный взгляд на управление личными финансами.
