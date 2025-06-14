@@ -82,6 +82,18 @@ export const removeSpecialCharacters = (value: string) => {
   return value.replace(/[^\w\s]/gi, "");
 };
 
+export const removeUnderscoreAndCapitalizeFirstLetter = (value: string) => {
+  return value
+    .split("_")
+    .map((word) => {
+      if (["AND", "OR"].includes(word.toUpperCase())) {
+        return word.toLowerCase();
+      }
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    })
+    .join(" ");
+};
+
 interface UrlQueryParams {
   params: string;
   key: string;
@@ -195,19 +207,23 @@ export const getTransactionStatus = (date: Date) => {
   return date > twoDaysAgo ? "Processing" : "Success";
 };
 
+export const authFormSchema = (type: "sign-in" | "sign-up") =>
+  z.object({
+    // sign-up
+    firstName: type === "sign-in" ? z.string().optional() : z.string().min(3),
+    lastName: type === "sign-in" ? z.string().optional() : z.string().min(3),
+    address1:
+      type === "sign-in" ? z.string().optional() : z.string().min(3).max(50),
+    city:
+      type === "sign-in" ? z.string().optional() : z.string().min(3).max(50),
+    state:
+      type === "sign-in" ? z.string().optional() : z.string().min(2).max(2),
+    postalCode:
+      type === "sign-in" ? z.string().optional() : z.string().min(3).max(6),
+    dateOfBirth: type === "sign-in" ? z.string().optional() : z.string().min(3),
+    ssn: type === "sign-in" ? z.string().optional() : z.string().min(3),
 
-export const authFormSchema = (type: 'sign-in' | 'sign-up') =>  z.object({
-  // sign-up
-  firstName: type === 'sign-in' ? z.string().optional() : z.string().min(3),
-  lastName: type === 'sign-in' ? z.string().optional() : z.string().min(3),
-  address1: type === 'sign-in' ? z.string().optional() : z.string().min(3).max(50),
-  city: type === 'sign-in' ? z.string().optional() : z.string().min(3).max(50),
-  state: type === 'sign-in' ? z.string().optional() : z.string().min(2).max(2),
-  postalCode: type === 'sign-in' ? z.string().optional() : z.string().min(3).max(6),
-  dateOfBirth: type === 'sign-in' ? z.string().optional() : z.string().min(3),
-  ssn: type === 'sign-in' ? z.string().optional() : z.string().min(3),
-
-  // both
-  email: z.string().email(),
-  password: z.string().min(8, "Password must contain at least 8 characters."),
-});
+    // both
+    email: z.string().email(),
+    password: z.string().min(8, "Password must contain at least 8 characters."),
+  });
