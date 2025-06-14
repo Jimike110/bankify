@@ -17,7 +17,7 @@ import { addFundingSource, createDwollaCustomer } from "./dwolla.actions";
 const {
   APPWRITE_DATABASE_ID: DATABASE_ID,
   APPWRITE_USER_COLLECTION_ID: USER_COLLECTION_ID,
-  APPWPRITE_BANK_COLLECTION_ID: BANK_COLLECTION_ID,
+  APPWRITE_BANK_COLLECTION_ID: BANK_COLLECTION_ID,
 } = process.env;
 
 export const signIn = async ({ email, password }: signInProps) => {
@@ -76,7 +76,7 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
       path: "/",
       httpOnly: true,
       sameSite: "strict",
-      secure: true,
+      secure: false,
     });
 
     return parseStringify(newUser);
@@ -88,8 +88,10 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
 export async function getLoggedInUser() {
   try {
     const { account } = await createSessionClient();
-    return await account.get();
+    const user = await account.get();
+    return parseStringify(user);
   } catch (error) {
+    console.log(error);
     return null;
   }
 }
@@ -102,6 +104,7 @@ export const logoutAccount = async () => {
 
     await account.deleteSession("current");
   } catch (error) {
+    console.log(error);
     return null;
   }
 };
@@ -113,7 +116,7 @@ export const createLinkToken = async (user: User) => {
         client_user_id: user.$id,
       },
       client_name: `${user.firstName} ${user.lastName}`,
-      products: ["auth", "transactions"] as Products[],
+      products: ["auth"] as Products[],
       language: "en",
       country_codes: ["US"] as CountryCode[],
     };
@@ -150,9 +153,12 @@ export const createBankAccount = async ({
         shareableId,
       }
     );
+    console.log("Bank account created:", bankAccount);
 
     return parseStringify(bankAccount);
-  } catch (error) {}
+  } catch (error) {
+    console.error("Error creating bank account:", error);
+  }
 };
 
 export const exchangePublicToken = async ({

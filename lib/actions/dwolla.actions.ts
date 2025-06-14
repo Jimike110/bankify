@@ -1,7 +1,4 @@
 "use server";
-console.log("DWOLLA_KEY:", process.env.DWOLLA_KEY ? "Loaded" : "Not Loaded");
-console.log("DWOLLA_SECRET:", process.env.DWOLLA_SECRET ? "Loaded" : "Not Loaded");
-console.log("DWOLLA_ENV:", process.env.DWOLLA_ENV);
 
 import { Client } from "dwolla-v2";
 

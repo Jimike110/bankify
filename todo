@@ -1,1 +1,4 @@
 // TODO: Change secure in cookies from false to true
+// TODO: Don't create an Appwrite User or anything if it doesn't successfully integrate with Plaid or Dwolla
+// TODO: Add test_credentials and instructions for users to see and use
+// TODO: Check slow redirect after success to '/'
