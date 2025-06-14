@@ -77,7 +77,6 @@ export const getAccount = async ({ appwriteItemId }: getAccountProps) => {
       access_token: bank.accessToken,
     });
     const accountData = accountsResponse.data.accounts[0];
-    console.log("Plaid account response", accountData);
 
     // get transfer transactions from appwrite
     const transferTransactionsData = await getTransactionsByBankId({
@@ -100,7 +99,6 @@ export const getAccount = async ({ appwriteItemId }: getAccountProps) => {
     const institution = await getInstitution({
       institutionId: accountsResponse.data.item.institution_id!,
     });
-    console.log("Plaid institution data", institution);
 
     const transactions = await getTransactions({
       accessToken: bank?.accessToken,
