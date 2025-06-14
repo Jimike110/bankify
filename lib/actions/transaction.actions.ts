@@ -14,6 +14,7 @@ export const createTransaction = async (
 ) => {
   try {
     const { database } = await createAdminClient();
+
     const newTransaction = await database.createDocument(
       DATABASE_ID!,
       TRANSACTION_COLLECTION_ID!,
@@ -21,7 +22,7 @@ export const createTransaction = async (
       {
         channel: "online",
         category: "Transfer",
-        transaction,
+        ...transaction,
       }
     );
 
@@ -36,6 +37,7 @@ export const getTransactionsByBankId = async ({
 }: getTransactionsByBankIdProps) => {
   try {
     const { database } = await createAdminClient();
+
     const senderTransactions = await database.listDocuments(
       DATABASE_ID!,
       TRANSACTION_COLLECTION_ID!,
