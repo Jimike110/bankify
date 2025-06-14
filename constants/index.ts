@@ -128,6 +128,42 @@ export const transactionCategoryStyles = {
     textColor: "text-[#027A48]",
     chipBackgroundColor: "bg-[#ECFDF3]",
   },
+  "General Merchandise": {
+    borderColor: "border-yellow-600",
+    backgroundColor: "bg-yellow-400",
+    textColor: "text-yellow-800",
+    chipBackgroundColor: "bg-yellow-100",
+  },
+  Transportation: {
+    borderColor: "border-indigo-600",
+    backgroundColor: "bg-indigo-500",
+    textColor: "text-indigo-800",
+    chipBackgroundColor: "bg-indigo-100",
+  },
+  Travel: {
+    borderColor: "border-cyan-600",
+    backgroundColor: "bg-cyan-500",
+    textColor: "text-cyan-800",
+    chipBackgroundColor: "bg-cyan-100",
+  },
+  "Loan Payments": {
+    borderColor: "border-amber-800",
+    backgroundColor: "bg-amber-600",
+    textColor: "text-amber-900",
+    chipBackgroundColor: "bg-amber-100",
+  },
+  Entertainment: {
+    borderColor: "border-purple-700",
+    backgroundColor: "bg-purple-500",
+    textColor: "text-purple-800",
+    chipBackgroundColor: "bg-purple-100",
+  },
+  Income: {
+    borderColor: "border-teal-600",
+    backgroundColor: "bg-teal-500",
+    textColor: "text-teal-800",
+    chipBackgroundColor: "bg-teal-100",
+  },
   default: {
     borderColor: "",
     backgroundColor: "bg-blue-500",
