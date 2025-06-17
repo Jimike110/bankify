@@ -17,7 +17,7 @@ const BankCard = ({
       >
         <div className="bank-card_content">
           <div>
-            <h1 className="text-16 font-semibold text-white">{userName}</h1>
+            <h1 className="text-16 font-semibold text-white">{account.name}</h1>
             <p className="font-ibm-plex-serif font-black text-white">
               {formatAmount(account.currentBalance)}
             </p>
@@ -58,7 +58,7 @@ const BankCard = ({
           width={316}
           height={190}
           alt="lines"
-          className="absolute top-0 left-0"
+          className="absolute z-10 top-0 left-0"
         ></Image>
       </Link>
 
