@@ -14,13 +14,12 @@ import { plaidClient } from "../plaid";
 import { revalidatePath } from "next/cache";
 import { addFundingSource, createDwollaCustomer } from "./dwolla.actions";
 
-const {
-  APPWRITE_DATABASE_ID: DATABASE_ID,
-  APPWRITE_USER_COLLECTION_ID: USER_COLLECTION_ID,
-  APPWRITE_BANK_COLLECTION_ID: BANK_COLLECTION_ID,
-} = process.env;
-
 export const getUserInfo = async ({ userId }: getUserInfoProps) => {
+  const {
+    APPWRITE_DATABASE_ID: DATABASE_ID,
+    APPWRITE_USER_COLLECTION_ID: USER_COLLECTION_ID,
+  } = process.env;
+
   try {
     const { database } = await createAdminClient();
 
@@ -33,6 +32,7 @@ export const getUserInfo = async ({ userId }: getUserInfoProps) => {
     return parseStringify(user.documents[0]);
   } catch (error) {
     console.error("Error getting user info", error);
+    throw new Error("Failed to get user info");
   }
 };
 
@@ -45,7 +45,7 @@ export const signIn = async ({ email, password }: signInProps) => {
       path: "/",
       httpOnly: true,
       sameSite: "strict",
-      secure: false,
+      secure: true,
     });
 
     const user = await getUserInfo({ userId: session.userId });
@@ -57,6 +57,11 @@ export const signIn = async ({ email, password }: signInProps) => {
 };
 
 export const signUp = async ({ password, ...userData }: SignUpParams) => {
+  const {
+    APPWRITE_DATABASE_ID: DATABASE_ID,
+    APPWRITE_USER_COLLECTION_ID: USER_COLLECTION_ID,
+  } = process.env;
+
   const { email, firstName, lastName } = userData;
 
   let newUserAccount;
@@ -100,12 +105,13 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
       path: "/",
       httpOnly: true,
       sameSite: "strict",
-      secure: false,
+      secure: true,
     });
 
     return parseStringify(newUser);
   } catch (error) {
     console.error("Error", error);
+    throw new Error("Failed to sign up user");
   }
 };
 
@@ -171,6 +177,11 @@ export const createBankAccount = async ({
   fundingSourceUrl,
   shareableId,
 }: createBankAccountProps) => {
+  const {
+    APPWRITE_DATABASE_ID: DATABASE_ID,
+    APPWRITE_BANK_COLLECTION_ID: BANK_COLLECTION_ID,
+  } = process.env;
+
   try {
     const { database } = await createAdminClient();
 
@@ -256,6 +267,11 @@ export const exchangePublicToken = async ({
 };
 
 export const getBanks = async ({ userId }: getBanksProps) => {
+  const {
+    APPWRITE_DATABASE_ID: DATABASE_ID,
+    APPWRITE_BANK_COLLECTION_ID: BANK_COLLECTION_ID,
+  } = process.env;
+
   try {
     const { database } = await createAdminClient();
 
@@ -272,6 +288,11 @@ export const getBanks = async ({ userId }: getBanksProps) => {
 };
 
 export const getBank = async ({ documentId }: getBankProps) => {
+  const {
+    APPWRITE_DATABASE_ID: DATABASE_ID,
+    APPWRITE_BANK_COLLECTION_ID: BANK_COLLECTION_ID,
+  } = process.env;
+
   try {
     const { database } = await createAdminClient();
 
@@ -290,6 +311,11 @@ export const getBank = async ({ documentId }: getBankProps) => {
 export const getBankByAccountId = async ({
   accountId,
 }: getBankByAccountIdProps) => {
+  const {
+    APPWRITE_DATABASE_ID: DATABASE_ID,
+    APPWRITE_BANK_COLLECTION_ID: BANK_COLLECTION_ID,
+  } = process.env;
+
   try {
     const { database } = await createAdminClient();
 
