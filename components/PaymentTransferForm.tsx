@@ -133,7 +133,7 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
               <div className="payment-transfer_form-item pb-6 pt-5">
                 <div className="payment-transfer_form-content">
                   <FormLabel className="text-14 font-medium text-gray-700">
-                    Transfer Note (Optional)
+                    Transfer Note
                   </FormLabel>
                   <FormDescription className="text-12 font-normal text-gray-600">
                     Please provide any additional information or instructions
