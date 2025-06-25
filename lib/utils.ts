@@ -210,18 +210,18 @@ export const getTransactionStatus = (date: Date) => {
 export const authFormSchema = (type: "sign-in" | "sign-up") =>
   z.object({
     // sign-up
-    firstName: type === "sign-in" ? z.string().optional() : z.string().min(3),
-    lastName: type === "sign-in" ? z.string().optional() : z.string().min(3),
+    firstName: type === "sign-in" ? z.string().optional() : z.string().min(3).max(50),
+    lastName: type === "sign-in" ? z.string().optional() : z.string().min(3).max(50),
     address1:
-      type === "sign-in" ? z.string().optional() : z.string().min(3).max(50),
+      type === "sign-in" ? z.string().optional() : z.string().min(3).max(50, "Address must be between 3 and 50 characters."),
     city:
-      type === "sign-in" ? z.string().optional() : z.string().min(3).max(50),
+      type === "sign-in" ? z.string().optional() : z.string().min(3).max(50, "City must be between 3 and 50 characters."),
     state:
       type === "sign-in" ? z.string().optional() : z.string().min(2).max(2),
     postalCode:
-      type === "sign-in" ? z.string().optional() : z.string().min(3).max(6),
-    dateOfBirth: type === "sign-in" ? z.string().optional() : z.string().min(3),
-    ssn: type === "sign-in" ? z.string().optional() : z.string().min(3),
+      type === "sign-in" ? z.string().optional() : z.string().length(5, "Postal code must be 5 digits."),
+    dateOfBirth: type === "sign-in" ? z.string().optional() : z.string().date("Invalid date. Format must be YYYY-MM-DD."),
+    ssn: type === "sign-in" ? z.string().optional() : z.string().length(4, "SSN must be 4 digits."),
 
     // both
     email: z.string().email(),

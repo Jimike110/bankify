@@ -1,8 +1,6 @@
-// TODO: Change secure in cookies from false to true
 // TODO: Don't create an Appwrite User or anything if it doesn't successfully integrate with Plaid or Dwolla
 // TODO: Add test_credentials and instructions for users to see and use
 // TODO: Check slow redirect after success to '/'
 // TODO: Add loading state while switching between plaid accounts
 // TODO: Add loading state while loading transaction histories
-// TODO: Limit the transactions on homepage to say 10
 // TODO: Adding multiple accounts on sign up doesn't reflect (only one does)
