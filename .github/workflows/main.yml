@@ -25,7 +25,7 @@ jobs:
           ctan_packages: amsmath amsfonts lua-uni-algos geometry hyperref babel titlesec enumitem
       - name: Upload PDF to the workflow tab
         id: upload-workflow-tab
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: output
           path: output/resume.pdf
